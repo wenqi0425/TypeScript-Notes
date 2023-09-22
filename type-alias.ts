@@ -38,18 +38,22 @@ type User = {
     isAdmin: boolean;
     };
     
-    function getUserById(id: number): User {
-    // 假设这里有一些代码，用于从数据库中获取用户信息
-    return {
-        id: id,
-        name: "Alice",
-        email: "alice@example.com",
-        age: 30,
-        isAdmin: false,
-    };
-    }
-    
-    const user = getUserById(123);
-    console.log(user.name); // 输出 "Alice"
+function getUserById(id: number): User {
+// 假设这里有一些代码，用于从数据库中获取用户信息
+return {
+    id: id,
+    name: "Alice",
+    email: "alice@example.com",
+    age: 30,
+    isAdmin: false,
+};
+}
+
+const user = getUserById(123);
+console.log(user.name); // 输出 "Alice"
+
+
+type Direction = "north" | "east" | "south" | "west";
+let toWhere:Direction = "north";
 
 

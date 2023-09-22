@@ -21,24 +21,110 @@
 
 */
 
-// Stpe 1）定义接口 Person，包含属性： name、age、sayHello
+// Stpe 1）定义接口 Person，包含属性： name、age、sayHello, hobby, address
+// 接口中可以包含另一个接口，比如 Address
+// 只读属性 readonly
+// 可选属性 ?
 
 interface Person {
-    name: string;
+    readonly name: string;   // 可读不可改
     age: number;
-    sayHello: () => void;
+    hobby?: string[];        // 可选属性
+    sayHello: () => void;  
+    address: Address;
   }
+
+interface Address {
+  city: string;
+  street: string;
+  zipCode: string;
+}
 
 // Stpe 2）定义一个对象 person，它的类型是接口 Person，包含属性：name、age、sayHello
 
-  const person: Person = {
-    name: "Alice",
-    age: 30,
-    sayHello: () => {
-      console.log(`Hello, my name is ${person.name}`);
-    },
-  };
+const alice: Person = {
+  name: "Alice",
+  age: 30,
+  sayHello: () => {
+    console.log(`Hello, my name is ${alice.name}`);
+  },
+  address: {
+    city: "北京",
+    street: "朝阳区",
+    zipCode: "100000"
+  }
+};
+
+const bob: Person = {
+  name: "Bob",
+  age: 20,
+  hobby: ["reading", "coding"],
+  sayHello: () => {
+    console.log(`Hello, my name is ${bob.name}`);
+  },  
+  address: {
+    city: "北京",
+    street: "朝阳区",
+    zipCode: "100000"
+  }
+};
+
 
 // Stpe 3）调用对象的方法 sayHello
 
-  person.sayHello();        // 输出 "Hello, my name is Alice"
+alice.sayHello();        // 输出 "Hello, my name is Alice"
+
+// Stpe 4）访问对象的属性
+alice.name;              // 输出 "Alice"
+alice.age;               // 输出 30
+alice.hobby;             // 输出 undefined，因为 hobby 是可选属性，alice 没有定义 hobby
+alice.address.city;      // 输出 "北京"
+alice.address.street;    // 输出 "朝阳区"
+alice.address.zipCode;   // 输出 "100000"
+
+// Stpe 5）修改对象的属性
+alice.name = "Bob";      // 报错，因为 name 是只读属性
+alice.age = 20;
+alice.hobby.push("eating");   // 报错，因为 hobby 是可选属性，alice 没有定义 hobby，也不能向她添加 hobby
+alice.address.city = "上海";
+alice.address.street = "浦东新区";
+alice.address.zipCode = "200000";
+
+
+// 接口的继承
+
+interface Teacher extends Person {
+  teach: (subject: string) => void;
+}
+
+interface Student extends Person {
+  learn: (subject: string) => void;
+}
+
+// 一个接口可以继承多个接口，使用逗号分隔
+interface Graduate extends Person, Teacher, Student {
+  research: (topic: string) => void;
+}
+
+let graduate: Graduate = {
+  name: "张三",
+  age: 30,
+  sayHello: () => {
+    console.log(`Hello, my name is ${graduate.name}`);
+  },
+  hobby: ["reading", "coding"],
+  address: {
+    city: "北京",
+    street: "朝阳区",
+    zipCode: "100000"
+  },
+  teach: (subject: string) => {
+    console.log(`I'm teaching ${subject}`);
+  },
+  learn: (subject: string) => {
+    console.log(`I'm learning ${subject}`);
+  },
+  research: (topic: string) => {
+    console.log(`I'm researching ${topic}`);
+  }
+};

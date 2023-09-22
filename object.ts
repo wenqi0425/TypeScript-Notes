@@ -13,6 +13,12 @@
         let 对象名:{属性名:属性值类型};   
         可选属性：属性名后面加？
         任意属性：属性名后面加 [propName:string]:any
+
+    // 内置对象：ECMAScript 的内置对象
+        1. Boolean、Number、String、Array、Date、RegExp、Error
+        2. Math、JSON，Function、Object
+        3. HTMLElement、Document、Element、NodeList、Node
+        4. ...
 */
 
 
@@ -45,3 +51,5 @@ obj5 = {name:"张三", salary:10000, age:18};    // 可以包括任意属性
 
 let obj6:{name:string,[propName:string]:string};  // 定义一个对象模板，包括name属性和任意属性
 obj6 = {name:"张三", salary:"10000", age:"18"};    // 可以包括任意属性，但是属性值必须符合类型
+
+

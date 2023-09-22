@@ -58,7 +58,7 @@ let n:null = null;             // 适用于任何类型
 let naN:number = NaN;          
 
 
-// any类型   
+// any类型 (不推荐)   
 // 可以赋值为任意类型。尽量不要使用any类型，只要使用了any类型，ts就不会对这个变量进行类型检测
 
 let b;  // 声明变量不赋值，类型为any
