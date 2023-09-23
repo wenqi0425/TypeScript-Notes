@@ -46,10 +46,11 @@ obj4 = {name:'张三'};          // 可以不包括可选属性，但是如果�
 
 // 任意属性：属性名后面加[propName:string]:any
 
-let obj5:{name:string,[propName:string]:any};  // 定义一个对象模板，包括name属性和任意属性
-obj5 = {name:"张三", salary:10000, age:18};    // 可以包括任意属性
+let obj5:{name:string,[propName:string]:any};       // 定义一个对象模板，包括name属性和任意属性
+obj5 = {name:"张三", salary:10000, age:18};         // 可以包括任意属性
 
-let obj6:{name:string,[propName:string]:string};  // 定义一个对象模板，包括name属性和任意属性
-obj6 = {name:"张三", salary:"10000", age:"18"};    // 可以包括任意属性，但是属性值必须符合类型
+let obj6:{name:string,[propName:string]:string};    // 定义一个对象模板，包括name属性和任意属性
+obj6 = {name:"张三", salary:"10000", age:"18"};     // 可以包括任意属性，但是属性值必须符合类型
+
 
 

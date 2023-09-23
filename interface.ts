@@ -128,3 +128,11 @@ let graduate: Graduate = {
     console.log(`I'm researching ${topic}`);
   }
 };
+
+console.log(graduate.name);   // "张三"
+graduate.sayHello();          // "Hello, my name is 张三" 
+
+graduate.teach('math');       // "I'm teaching math"
+graduate.learn('math');       // "I'm learning math"
+graduate.research('math');    // "I'm researching math"
+

@@ -39,7 +39,7 @@ let divs:NodeList = document.querySelectorAll('div');
 
 // undefined 和 null 是任意类型的子类型，可以赋值给任意类型
 
-let astring:string = null;                           
+let astring:string = null;        // 这个报错可以忽略，因为并没有开启 strictNullChecks 选项                     
 let bstring:string = undefined;           
 
 let u:undefined = undefined;   // 适用于任何类型
@@ -63,12 +63,12 @@ let naN:number = NaN;
 
 let b;  // 声明变量不赋值，类型为any
 
-// any类型可以赋值为任意类型
+// any类型可以赋值为任意类型，最后一个覆盖前面的
 let a:any=10; 
 a='hello';
 a=true;
 a=function(){};
-console.log(a);
+console.log(a);   // function () { } 
 
 
 // unknown类型  
@@ -86,6 +86,13 @@ if(typeof c === 'number'){
 }else if(typeof c === 'string'){
     console.log(c.length);
 }
+else if(typeof c === 'boolean'){
+    console.log(c);   // true, Boolean类型不支持运算操作，c*5会报错
+}
+// else{
+//     console.log(c*5)   // 这里会报错，因为c是unknown类型，不能进行运算操作，必须要先判断类型
+// }
+
 
 
 /* 字面量  Literal Types

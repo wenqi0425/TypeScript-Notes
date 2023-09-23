@@ -22,9 +22,11 @@
 */
 
 // 函数
+
 let fnN:() => number;  // 函数返回值是number类型
 
 //let fnV:() => void;    // 函数返回值是void类型,啥也没限定，不推荐
+
 let fnV:(a:number,b:number) => void;    
 fnV = function(a,b){
     console.log(a+b);
@@ -36,12 +38,14 @@ let fnAdd:(a:number,b:number)=>number =
     }  
 
 // 以上是定义一个在对象中使用的函数的方法
+
 let obj:{
     name:string,
     fn:(a:number,b:number)=>number
 }
 
 // 以下是定义一个单独的函数的方法，入口参数是number类型，返回值是number类型
+
 function add(a:number,b:number):number{
     return a+b;
 }
@@ -52,10 +56,11 @@ let add3:(a:number,b:number)=>number = function(a,b){return a+b;}   // 普通函
 
 
 // 类型别名
-type Num =(a:number,b:number)=>number;  // 定义一个类型别名，类型别名一般首字母大写
-let add4:Num = (a,b)=>{return a+b;}         // 使用类型别名，类型推论
-let add5:Num = function(a,b){return a+b;}   // 使用类型别名，类型推论
-console.log(add4(1,2),add5(3,4));
+
+type Nums =(a:number,b:number)=>number;  // 定义一个类型别名，类型别名一般首字母大写
+let add4:Nums = (a,b)=>{return a+b;}         // 使用类型别名，类型推论
+let add5:Nums = function(a,b){return a+b;}   // 使用类型别名，类型推论
+console.log(add4(1,2),add5(3,4));            // 输出 3 7
 
 
 
@@ -99,17 +104,18 @@ function fn4(str: string, ...nums: number[]): void {
 
 
 // 函数重载
+
 function fn5(a: number, b: number): number;
 function fn5(a: string, b: string): string;
 
 function fn5(a: any, b: any): any {
 if (typeof a === "number" && typeof b === "number") {
-    return a + b;
-} else if (typeof a === "string" && typeof b === "string") {
-    return a + b;
-} else {
-    throw new Error("Invalid arguments");
-}
+        return a + b;
+    } else if (typeof a === "string" && typeof b === "string") {
+        return a + b;
+    } else {
+        throw new Error("Invalid arguments");
+    }
 }
 
 console.log(fn5(1, 2));                 // 输出 3

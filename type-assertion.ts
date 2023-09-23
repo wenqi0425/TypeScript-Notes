@@ -22,7 +22,20 @@
         9）将一个 unknown 断言为任何一个类型
         10）将一个类型断言为 never
         11）将一个类型断言为 void
-        12）将一个 void 断言为任何一个类型       
+        12）将一个 void 断言为任何一个类型    
+        
+    注意：
+        1）类型断言不是类型转换，断言成一个联合类型中不存在的类型是不允许的。
+        2）类型断言只能够「欺骗」TypeScript 编译器，无法避免运行时的错误，反而滥用类型断言可能会导致运行时错误。
+        3）类型断言可能会导致运行时错误，所以如果你在使用类型断言时遇到了问题，应该仔细思考是否有更好的解决方案。
+        4）类型断言不是万能的，它只能用于改变类型中不存在的属性，而不能新增属性。
+       
+
+    非空断言（Non-null Assertion）
+        1）语法：变量名!，比如 str!。
+        2）非空断言是一种新的类型断言，它可以用来从联合类型中排除 null 和 undefined，从而得到一个非空值。
+        3）非空断言的作用是告诉编译器，这个变量不为 null 或 undefined，直接编译成 JavaScript 代码。
+        4）非空断言的使用场景是当 TypeScript 无法正确判断一个变量是否为 null 或 undefined 时，比如 DOM 元素。
 */
 
 // 这两种语法的效果是相同的，都是将 `someValue` 断言为 `string` 类型，从而可以访问 `length` 属性。
@@ -94,10 +107,21 @@ let unknown: unknown = str5 as unknown;                 // 将 string 断言为 
 let unknown1: unknown = "unknown";
 let str6: string = unknown1 as string;                  // 将 unknown 断言为 string
 
-let str8: string = "str";
-let void1: void = (str8 as unknown) as void;            // 将 str8 断言为 void 类型，需要先断言为 unknown
+let str7: string = "str";
+let void1: void = (str7 as unknown) as void;            // 将 str8 断言为 void 类型，需要先断言为 unknown
 
 let void2: void = undefined;
-let str9: string = (void2 as unknown) as string;        // 将 void 断言为 string 类型，需要先断言为 unknown
+let str8: string = (void2 as unknown) as string;        // 将 void 断言为 string 类型，需要先断言为 unknown
 
+
+// 非空断言（Non-null Assertion）
+// 非空断言是一种新的类型断言，它可以用来从联合类型中排除 null 和 undefined，从而得到一个非空值。
+// 非空断言的语法是在变量名后面加上 !，比如 str!。
+// 非空断言的作用是告诉编译器，我知道这个变量不会为 null 或 undefined，你不用检查了，直接编译成 JavaScript 代码。
+// 非空断言的使用场景是当 TypeScript 无法正确判断一个变量是否为 null 或 undefined 时，比如 DOM 元素。
+// 例如，有一个变量 str，它的类型是 string | null，可以使用非空断言来让编译器相信 str 不会为 null：
+
+let str9: string | null;
+let len1: number = str9.length;      // 编译错误：str9 可能为 null
+let len2: number = str9!.length;     // 使用非空断言，告诉编译器 str9 不会为 null
 
